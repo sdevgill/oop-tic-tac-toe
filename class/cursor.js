@@ -22,6 +22,15 @@ class Cursor {
     Screen.setBackgroundColor(this.row, this.col, this.cursorColor);
   }
 
+  // Create a method to reset the Screen after moving the cursor
+  resetScreen = (r, c) => {
+    Screen.setBackgroundColor(this.row, this.col, this.gridColor);
+    this.row += r;
+    this.col += c;
+    Screen.setBackgroundColor(this.row, this.col, this.cursorColor);
+    Screen.render();
+  }
+
   up() {
     // Move cursor up
   }
