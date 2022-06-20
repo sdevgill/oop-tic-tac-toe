@@ -49,6 +49,47 @@ class TTT {
       }
     }
 
+    // Check for horizontal wins
+    grid.forEach(row => winningCombos.push(row));
+
+    // Check for vertical wins
+    for (let i = 0; i < grid[0].length; i++) {
+      let col = [];
+      grid.forEach(row => col.push(row[i]));
+      winningCombos.push(col);
+    }
+
+    // Check for diagonal wins
+    // Brute forced
+    // winningCombos.push([grid[0][0], grid[1][1], grid[2][2]]);
+    // winningCombos.push([grid[0][2], grid[1][1], grid[2][0]]);
+
+    // Check with algorithm
+    let leftToRight = [];
+    let rightToLeft = [];
+
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid.length; col++) {
+        if (row === col) {
+          leftToRight.push(grid[row][col]);
+        }
+      }
+    }
+
+    for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid.length; col++) {
+        if (row + col === grid.length - 1) {
+          rightToLeft.push(grid[row][col]);
+        }
+      }
+    }
+
+    winningCombos.push(leftToRight);
+    winningCombos.push(rightToLeft);
+
+    // Check for winner
+    winningCombos.forEach(checkPlayerWin);
+
     checkTie();
 
     return winner;
