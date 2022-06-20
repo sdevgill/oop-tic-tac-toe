@@ -24,7 +24,12 @@ class TTT {
     Screen.addCommand('down', 'move down', this.cursor.down);
     Screen.addCommand('left', 'move left', this.cursor.left);
     Screen.addCommand('right', 'move right', this.cursor.right);
+    // Place a move
     Screen.addCommand('enter', 'make move', this.makeMove);
+
+    Screen.setMessage(`Welcome! \nPress "h" for help. \nPlayer ${this.playerTurn}, make your move.`);
+
+    Screen.setBackgroundColor(this.cursor.row, this.cursor.col, this.cursor.cursorColor);
 
     Screen.render();
   }
