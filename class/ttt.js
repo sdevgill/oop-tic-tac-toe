@@ -23,18 +23,35 @@ class TTT {
     Screen.render();
   }
 
-  // Remove this
-  static testCommand() {
-    console.log("TEST COMMAND");
-  }
-
   static checkWin(grid) {
+    // Return false if the game has not ended
+    let winner = false;
+
+    // Array to store the winning combinations
+    const winningCombos = [];
 
     // Return 'X' if player X wins
     // Return 'O' if player O wins
-    // Return 'T' if the game is a tie
-    // Return false if the game has not ended
+    const checkPlayerWin = (arr) => {
+      if (arr.every((el) => el === "X")) {
+        winner = "X";
+      } else if (arr.every((el) => el === "O")) {
+        winner = "O";
+      }
+    }
 
+    // Return 'T' if the game is a tie
+    const checkTie = () => {
+      let blankSpaces = winningCombos.flat().filter((el) => el === " ").length;
+
+      if (blankSpaces === 0 && winner === false) {
+        winner = "T";
+      }
+    }
+
+    checkTie();
+
+    return winner;
   }
 
   static endGame(winner) {
