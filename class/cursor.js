@@ -24,10 +24,10 @@ class Cursor {
 
   // Create a method to reset the Screen after moving the cursor
   resetScreen = (r, c) => {
-    Screen.setBackgroundColor(this.row, this.col, this.gridColor);
+    this.resetBackgroundColor();
     this.row += r;
     this.col += c;
-    Screen.setBackgroundColor(this.row, this.col, this.cursorColor);
+    this.setBackgroundColor();
     Screen.render();
   }
 
