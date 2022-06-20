@@ -25,11 +25,42 @@ class TTT {
     Screen.addCommand('left', 'move left', this.cursor.left);
     Screen.addCommand('right', 'move right', this.cursor.right);
     // Place a move
-    Screen.addCommand('enter', 'make move', this.makeMove);
+    Screen.addCommand('return', 'make move', this.makeMove);
 
     Screen.setMessage(`Welcome! \nPress "h" for help. \nPlayer ${this.playerTurn}, make your move.`);
 
     Screen.setBackgroundColor(this.cursor.row, this.cursor.col, this.cursor.cursorColor);
+
+    Screen.render();
+  }
+
+  // Method to check for wins after each move
+  makeMove = () => {
+    let player = this.playerTurn;
+
+    // Check if the cursor is on a blank space
+    if (Screen.grid[this.cursor.row][this.cursor.col] === " ") {
+      // Place the player's symbol on the grid
+      Screen.setGrid(this.cursor.row, this.cursor.col, player);
+
+      // Check for a win
+      let winner = TTT.checkWin(Screen.grid);
+      if (winner !== false) {
+        TTT.endGame(winner);
+      }
+
+      // Switch player
+      if (player === "X") {
+        this.playerTurn = "O";
+      } else {
+        this.playerTurn = "X";
+      }
+
+      Screen.setMessage(`Player ${this.playerTurn}, make your move.`);
+
+    } else {
+      Screen.setMessage(`Invalid move. Space already taken. \nPlayer ${this.playerTurn}, make your move.`);
+    }
 
     Screen.render();
   }
