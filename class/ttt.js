@@ -112,17 +112,15 @@ class TTT {
 
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid.length; col++) {
+
         if (row === col) {
           leftToRight.push(grid[row][col]);
         }
-      }
-    }
 
-    for (let row = 0; row < grid.length; row++) {
-      for (let col = 0; col < grid.length; col++) {
         if (row + col === grid.length - 1) {
           rightToLeft.push(grid[row][col]);
         }
+
       }
     }
 
