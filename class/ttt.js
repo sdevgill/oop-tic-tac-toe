@@ -17,8 +17,14 @@ class TTT {
     Screen.initialize(3, 3);
     Screen.setGridlines(true);
 
-    // Replace this with real commands
-    Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
+    // Create commands for cursor movement and help/reset
+    Screen.addCommand('h', 'show commands', Screen.printCommands);
+    Screen.addCommand('r', 'reset the game', TTT.reset);
+    Screen.addCommand('up', 'move up', this.cursor.up);
+    Screen.addCommand('down', 'move down', this.cursor.down);
+    Screen.addCommand('left', 'move left', this.cursor.left);
+    Screen.addCommand('right', 'move right', this.cursor.right);
+    Screen.addCommand('enter', 'make move', this.makeMove);
 
     Screen.render();
   }
