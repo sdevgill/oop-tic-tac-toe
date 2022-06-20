@@ -31,20 +31,32 @@ class Cursor {
     Screen.render();
   }
 
-  up() {
+  up = () => {
     // Move cursor up
+    if (this.row > 0 && this.row < this.numRows) {
+      this.resetScreen(-1, 0);
+    }
   }
 
-  down() {
+  down = () => {
     // Move cursor down
+    if (this.row >= 0 && this.row < (this.numRows - 1)) {
+      this.resetScreen(1, 0);
+    }
   }
 
-  left() {
+  left = () => {
     // Move cursor left
+    if (this.col > 0 && this.col < this.numCols) {
+      this.resetScreen(0, -1);
+    }
   }
 
-  right() {
+  right = () => {
     // Move cursor right
+    if (this.col >= 0 && this.col < (this.numCols - 1)) {
+      this.resetScreen(0, 1);
+    }
   }
 
 }
